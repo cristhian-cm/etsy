@@ -27,7 +27,7 @@ module Etsy
     context "An instance of the Request class" do
 
       should "know the base path" do
-        Request.new('').base_path.should == '/v2'
+        Request.new('').base_path.should == '/v3'
       end
 
       should "append the api_key to the parameters in basic mode" do
