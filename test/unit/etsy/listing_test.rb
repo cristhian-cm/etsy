@@ -78,7 +78,6 @@ module Etsy
           Listing.stubs(:find).with([1, 2], {:other => :params}).returns(['listings'])
 
           Listing.find_all_by_shop_id(1, :state => :sold, :other => :params).should == ['listings']
-
         end
 
         should "not ask the API for listings if there are no transactions" do
@@ -188,9 +187,13 @@ module Etsy
         should "have a value for :black_and_white?" do
           @listing.black_and_white?.should == false
         end
+
+        should "have a value for :is_supply?" do
+          @listing.is_supply.should == false
+        end
       end
 
-      %w(active removed sold_out expired alchemy).each do |state|
+      %w(active removed sold_out expired edit draft private unavailable).each do |state|
         should "know that the listing is #{state}" do
           listing = Listing.new
           listing.expects(:state).with().returns(state.sub('_', ''))

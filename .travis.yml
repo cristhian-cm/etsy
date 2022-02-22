@@ -1,13 +1,16 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - jruby-19mode
-  - rbx
-  - 2.1.5
+  - jruby
+  - 2.6.8
+  - 2.7.4
+  - 3.0.2
+
+dist: bionic
 
 before_install:
   - gem install bundler
+  - sudo apt-get update && sudo apt-get install apt-transport-https ca-certificates -y && sudo update-ca-certificates
 
 matrix:
   allow_failures:
-    - rvm: rbx
+    - rvm: 3.0.2
